@@ -1,0 +1,72 @@
+
+<?php  
+  session_start();
+	  if ( !isset($_SESSION['login_user']) )
+		  header("Location: login.php");
+	  else
+		  echo "Welcome ".$_SESSION['login_user'];
+	  
+
+//if(isset($_POST['send']))  
+{  
+
+$host="localhost";
+//host name 
+$username="root";
+//database username  
+$word="";
+//database word  
+$db_name="tayba guide";
+//database name  
+$tbl_name="pois";
+//table name  
+$con=mysqli_connect("$host", "$username", "$word","$db_name")or die("cannot connect");
+
+//connection string  
+
+	
+	
+	$pid = $_POST['pid'];
+	$category = $_POST['category'];
+	$title = $_POST['title'];
+	$desc = $_POST['description'];
+	$location = $_POST['location'];
+
+	$sql= "update pois set Category='".$category."',Title='".$title."',Description='".$desc."',Location='".$location."' where PID =$pid";
+	echo $sql;
+	
+$in_ch=mysqli_query($con,$sql);
+
+
+if($in_ch==1)  
+   
+
+{  
+     
+
+ echo'<script>alert("POI Updated Successfully")</script>';  
+	header("Location:Manageplaces.php");
+  
+
+ } 
+
+ 
+else  
+  
+
+ {  
+     
+
+ echo'<script>alert("Failed To Insert")</script>';  
+  
+
+ }  
+
+
+}  
+
+
+?> 
+ 
+
+
