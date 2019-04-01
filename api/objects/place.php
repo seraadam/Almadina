@@ -79,4 +79,31 @@ function create(){
     return false;
 
 }
+// used when filling up the update product form
+function readOne(){
+
+    // query to read single record
+    $query = "SELECT * FROM " . $this->table_name ." WHERE PID = ? ";
+
+    // prepare query statement
+    $stmt = $this->conn->prepare( $query );
+
+    // bind id of product to be updated
+    $stmt->bindParam(1, $this->PID);
+
+    // execute query
+    $stmt->execute();
+
+    // get retrieved row
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // set values to object properties
+    $this->Category = $row['Category'];
+    $this->Description = $row['Description'];
+    $this->lat = $row['lat'];
+    $this->lang = $row['lang'];
+    $this->image_name = $row['image_name'];
+    $this->Title = $row['Title'];
+
+}
 }

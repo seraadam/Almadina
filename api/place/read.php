@@ -44,7 +44,7 @@ if($num>0){
             "Description" => html_entity_decode($Description),
             "Title" => $Title,
             "lat" => $lat,
-            "long" => $long,
+            "lang" => $lang,
             "image_name" => $image_name
         );
 

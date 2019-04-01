@@ -79,4 +79,32 @@ function create(){
     return false;
 
 }
+// used when filling up the update product form
+function readOne(){
+
+    // query to read single record
+    $query = "SELECT * FROM " . $this->table_name ." WHERE VID = ? ";
+
+    // prepare query statement
+    $stmt = $this->conn->prepare( $query );
+
+    // bind id of product to be updated
+    $stmt->bindParam(1, $this->VID);
+
+    // execute query
+    $stmt->execute();
+
+    // get retrieved row
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // set values to object properties
+    $this->Username = $row['Username'];
+    $this->Password = $row['Password'];
+    $this->NAtionality = $row['NAtionality'];
+    $this->Age = $row['Age'];
+    $this->Gender = $row['Gender'];
+    $this->Email = $row['Email'];
+    $this->PhoneNumber = $row['PhoneNumber'];
+
+}
 }
