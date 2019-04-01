@@ -3,7 +3,7 @@ class plan{
 
     // database connection and table name
     private $conn;
-    private $table_name = "p_plan";
+    private $table_name = "plan";
 
     // object properties
     public $TID;

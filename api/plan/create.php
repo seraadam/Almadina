@@ -68,4 +68,11 @@ else{
     // tell the user
     echo json_encode(array("message" => "400"));
 }
+// {
+// "VID":"4",
+// "PID":"9",
+// "StartDate":"2019-09-4",
+// "EndDate":"2019-09-4",
+// "Places":"place"
+// }
 ?>
