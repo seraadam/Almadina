@@ -43,7 +43,8 @@ if($num>0){
             "Category" => $Category,
             "Description" => html_entity_decode($Description),
             "Title" => $Title,
-            "Location" => $Location,
+            "lat" => $lat,
+            "long" => $long,
             "image_name" => $image_name
         );
 

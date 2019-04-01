@@ -3,14 +3,15 @@ class Place{
 
     // database connection and table name
     private $conn;
-    private $table_name = "pois";
+    private $table_name = "place";
 
     // object properties
     public $PID;
     public $Category;
     public $Title;
     public $Description;
-    public $Location;
+    public $lat;
+    public $lang;
     public $image_name;
 
 
@@ -44,7 +45,9 @@ function create(){
     $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-             Category=:Category, Description=:Description,Location=:Location ,image_name=:image_name , Title=:Title ";
+             Category=:Category,
+             Description=:Description,
+             lat=:lat,lang=:lang,image_name=:image_name , Title=:Title ";
 
     // prepare query
     $stmt = $this->conn->prepare($query);
@@ -54,7 +57,8 @@ function create(){
 
     $this->Category=htmlspecialchars(strip_tags($this->Category));
     $this->Description=htmlspecialchars(strip_tags($this->Description));
-    $this->Location=htmlspecialchars(strip_tags($this->Location));
+     $this->lat=htmlspecialchars(strip_tags($this->lat));
+    $this->lang=htmlspecialchars(strip_tags($this->lang));
     $this->image_name=htmlspecialchars(strip_tags($this->image_name));
     $this->Title=htmlspecialchars(strip_tags($this->Title));
 
@@ -62,7 +66,8 @@ function create(){
 
     $stmt->bindParam(':Category', $this->Category);
     $stmt->bindParam(':Description', $this->Description);
-    $stmt->bindParam(':Location', $this->Location);
+    $stmt->bindParam(':lat', $this->lat);
+    $stmt->bindParam(':lang', $this->lang);
     $stmt->bindParam(':image_name', $this->image_name);
     $stmt->bindParam(':Title', $this->Title);
 

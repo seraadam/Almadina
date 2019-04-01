@@ -71,4 +71,13 @@ else{
     // tell the user
     echo json_encode(array("message" => "Unable to create visitor. Data is incomplete."));
 }
+// {
+// "Username":"Historical",
+// "Password":"Tabuk station",
+// "Age":"28",
+// "Gender":"gfds",
+// "NAtionality":"ss",
+// "Email":"dsafdghf",
+// "PhoneNumber":"2435465768"
+// }
 ?>
