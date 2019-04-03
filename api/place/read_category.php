@@ -1,53 +1,71 @@
 <?php
 // required headers
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: access");
-header("Access-Control-Allow-Methods: GET");
-header("Access-Control-Allow-Credentials: true");
-header('Content-Type: application/json');
+header("Content-Type: application/json; charset=UTF-8");
 
+// database connection will be here
 // include database and object files
 include_once '../config/database.php';
 include_once '../objects/place.php';
 
-// get database connection
+// instantiate database and place object
 $database = new Database();
 $db = $database->getConnection();
 
-// prepare place object
+// initialize object
 $place = new Place($db);
 
-// set ID property of record to read
-$place->Category= isset($_GET['category']) ? $_GET['category'] : die();
+// read places will be here
 
-// read the details of place to be edited
-$place->readCategory();
+// query places
+$stmt = $place->read();
+$num = $stmt->rowCount();
 
-if($place->Category!=null){
-    // create array
-    $place_arr = array(
+// check if more than 0 record found
+if($num>0){
 
-      "PID" => $place->PID,
-      "Description" => html_entity_decode($place->Description),
-      "Title" => $place->Title,
-      "lat" => $place->lat,
-      "lang" => $place->lang,
-      "image_name" => $place->image_name
+    // places array
+    $places_arr=array();
+    $places_arr["category"]=array();
 
-    );
+    // retrieve our table contents
+    // fetch() is faster than fetchAll()
+    // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        // extract row
+        // this will make $row['name'] to
+        // just $name only
+        extract($row);
+
+        $place_item=array(
+
+            "PID" => $PID,
+            "Category" => $Category,
+            "Description" => html_entity_decode($Description),
+            "Title" => $Title,
+            "lat" => $lat,
+            "lang" => $lang,
+            "image_name" => $image_name
+        );
+
+        array_push($places_arr["category"], $place_item);
+    }
 
     // set response code - 200 OK
     http_response_code(200);
 
-    // make it json format
-    echo json_encode($place_arr);
+    // show places data in json format
+    echo json_encode($places_arr);
 }
 
+// no places found will be here
 else{
+
     // set response code - 404 Not found
     http_response_code(404);
 
-    // tell the user place does not exist
-    echo json_encode(array("message" => "place does not exist."));
+    // tell the user no products found
+    echo json_encode(
+        array("message" => "No places found.")
+    );
 }
-?>
