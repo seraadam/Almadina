@@ -29,9 +29,7 @@ if($plan->TID!=null){
 
       "VID" => $plan->VID,
       "PID" => $plan->PID,
-      "StartDate" => $plan->StartDate,
-      "EndDate" => $plan->EndDate,
-      "places" => $plan->places
+      "Date" => $plan->Date
 
     );
 

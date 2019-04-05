@@ -13,8 +13,8 @@ class Place{
     public $lat;
     public $lang;
     public $image_name;
-
-
+    public $Start;
+    public $End;
     // constructor with $db as database connection
     public function __construct($db){
         $this->conn = $db;
@@ -47,7 +47,8 @@ function create(){
             SET
              Category=:Category,
              Description=:Description,
-             lat=:lat,lang=:lang,image_name=:image_name , Title=:Title ";
+             lat=:lat,lang=:lang,image_name=:image_name , Title=:Title
+             ,Start=:Start,End=:End";
 
     // prepare query
     $stmt = $this->conn->prepare($query);
@@ -61,6 +62,8 @@ function create(){
     $this->lang=htmlspecialchars(strip_tags($this->lang));
     $this->image_name=htmlspecialchars(strip_tags($this->image_name));
     $this->Title=htmlspecialchars(strip_tags($this->Title));
+    $this->Start=htmlspecialchars(strip_tags($this->Start));
+    $this->End=htmlspecialchars(strip_tags($this->End));
 
     // bind values
 
@@ -70,6 +73,8 @@ function create(){
     $stmt->bindParam(':lang', $this->lang);
     $stmt->bindParam(':image_name', $this->image_name);
     $stmt->bindParam(':Title', $this->Title);
+    $stmt->bindParam(':Start', $this->Start);
+    $stmt->bindParam(':End', $this->End);
 
     // execute query
     if($stmt->execute()){
@@ -109,16 +114,39 @@ function readOne(){
     // execute query
     $stmt->execute();
 
+
     // get retrieved row
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // set values to object properties
+    $this->PID =$row['PID'];
     $this->Category = $row['Category'];
     $this->Description = $row['Description'];
     $this->lat = $row['lat'];
     $this->lang = $row['lang'];
     $this->image_name = $row['image_name'];
     $this->Title = $row['Title'];
+    $this->Start = $row['Start'];
+    $this->End = $row['End'];
 
 }
+
+function readdate($pdate){
+
+  // query to read single record
+
+
+  // select all query
+  $query = "SELECT * FROM ". $this->table_name ." WHERE `Start` <= ' " .$pdate. "' AND `End` > ' " . $pdate. "'";
+
+  // prepare query statement
+  $stmt = $this->conn->prepare($query);
+echo json_encode($stmt);
+  // execute query
+  $stmt->execute();
+  return $stmt;
+//http://localhost/tiba/api/place/read_dates.php?pdate=2019-02-27
+}
+
+
 }

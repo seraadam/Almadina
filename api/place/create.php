@@ -30,7 +30,9 @@ if(
     !empty($data->lat) &&
     !empty($data->lang) &&
     !empty($data->image_name) &&
-    !empty($data->Title)
+    !empty($data->Title)&&
+    !empty($data->Start) &&
+    !empty($data->End)
 ){
 
     // set place property values
@@ -41,8 +43,8 @@ if(
     $place->lang = $data->lang;
     $place->image_name = $data->image_name;
     $place->Title = $data->Title;
-
-
+    $place->Start = $data->Start;
+    $place->End = $data->End;
     // create the place
     if($place->create()){
 
@@ -81,14 +83,18 @@ else{
 // "lat":"24.4619371",
 // "lang":"39.6009011",
 // "image_name":"https://www.sauditourism.sa/ar/ExploreKSA/AttractionSites/AlHijazRailroad/PublishingImages/HijazRailroadLine.jpg",
-// "Description":"The Medina museum in Hejaz railway Station receives a lot of visitors and researchers. It is one of the prominent tourist destinations and a cultural front for Medina region, which is characterized by the abundance of archeological and Islamic sites. The museum includes the railway station buildings; a museum in the railway repair shop that displays the history of Hejaz Railway station; a market for craftsmen; a shop; a traditional café; and a restauran"
-// }
+// "Description":"The Medina museum in Hejaz railway Station receives a lot of visitors and researchers. It is one of the prominent tourist destinations and a cultural front for Medina region, which is characterized by the abundance of archeological and Islamic sites. The museum includes the railway station buildings; a museum in the railway repair shop that displays the history of Hejaz Railway station; a market for craftsmen; a shop; a traditional café; and a restauran",
+//"End":"2019-09-4",
+// "Start":"2019-09-4"
+//}
 // {
 // "Category":"Historical",
 // "Title":"Tabuk station",
 // "lat":"28.4043008",
 // "lang":"36.614686",
 // "image_name":"https://www.sauditourism.sa/ar/ExploreKSA/AttractionSites/AlHijazRailroad/PublishingImages/taboukstation.jpg",
-// "Description":"It is one of the main stations in the Hejaz railway. It has a unique building style. The first train reached it in 1906 CE. It is located in the heart of Tabuk city. It consists of a group of buildings that were built in a straight line parallel to the railway path. It was restored several times and it is currently in a good constructional condition. The total area of the station is 80,000 m2"
+// "Description":"It is one of the main stations in the Hejaz railway. It has a unique building style. The first train reached it in 1906 CE. It is located in the heart of Tabuk city. It consists of a group of buildings that were built in a straight line parallel to the railway path. It was restored several times and it is currently in a good constructional condition. The total area of the station is 80,000 m2",
+//"End":"2019-09-4",
+// "Start":"2019-09-4"
 // }
 ?>

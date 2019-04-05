@@ -14,11 +14,11 @@ $db = $database->getConnection();
 
 // initialize object
 $place = new Place($db);
-
-// read places will be here
+// set ID property of record to read
+$pdate= isset($_GET['pdate']) ? $_GET['pdate'] : die();
 
 // query places
-$stmt = $place->read();
+$stmt = $place->readdate($pdate);
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
@@ -68,6 +68,6 @@ else{
 
     // tell the user no products found
     echo json_encode(
-        array("message" => "No places found.")
+        array("message" => "no products")
     );
 }

@@ -45,7 +45,9 @@ if($num>0){
             "Title" => $Title,
             "lat" => $lat,
             "lang" => $lang,
-            "image_name" => $image_name
+            "image_name" => $image_name,
+            "End"=> $End,
+            "Start"=> $Start
         );
 
         array_push($places_arr["category"], $place_item);

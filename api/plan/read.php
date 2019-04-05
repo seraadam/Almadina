@@ -45,9 +45,8 @@ if($num>0){
             "TID" => $TID,
             "VID" => $VID,
             "PID" => $PID,
-            "StartDate" => $StartDate,
-            "EndDate" => $EndDate,
-            "Places" => $Places
+            "Date" => $Date
+
         );
 
         array_push($plans_arr["records"], $plan_item);

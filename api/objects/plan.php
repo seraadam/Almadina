@@ -9,9 +9,8 @@ class plan{
     public $TID;
     public $VID;
     public $PID;
-    public $StartDate;
-    public $EndDate;
-    public $Places;
+    public $Date;
+
 
 
     // constructor with $db as database connection
@@ -40,12 +39,13 @@ function read(){
 // create plan
 function create(){
 
+
+
     // query to insert record
     $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-          VID=:VID, PID=:PID,StartDate=:StartDate ,
-            EndDate=:EndDate , Places=:Places ";
+          VID=:VID, PID=:PID,Date=:Date ";
 
     // prepare query
     $stmt = $this->conn->prepare($query);
@@ -63,9 +63,8 @@ function create(){
 
     $stmt->bindParam(':VID', $this->VID);
     $stmt->bindParam(':PID', $this->PID);
-    $stmt->bindParam(':StartDate', $this->StartDate);
-    $stmt->bindParam(':EndDate', $this->EndDate);
-    $stmt->bindParam(':Places', $this->Places);
+    $stmt->bindParam(':Date', $this->Date);
+
 
     // execute query
     if($stmt->execute()){
@@ -96,9 +95,7 @@ function readOne(){
     // set values to object properties
     $this->VID = $row['VID'];
     $this->PID = $row['PID'];
-    $this->StartDate = $row['StartDate'];
-    $this->EndDate = $row['EndDate'];
-    $this->Places = $row['Places'];
+    $this->Date = $row['Date'];
 
 
 }

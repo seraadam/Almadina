@@ -27,12 +27,15 @@ if($place->PID!=null){
     // create array
     $place_arr = array(
 
+      "PID" => $place->PID,
       "Category" => $place->Category,
       "Description" => html_entity_decode($place->Description),
       "Title" => $place->Title,
       "lat" => $place->lat,
       "lang" => $place->lang,
-      "image_name" => $place->image_name
+      "image_name" => $place->image_name,
+      "End"=> $place->End,
+      "Start"=> $place->Start
 
     );
 

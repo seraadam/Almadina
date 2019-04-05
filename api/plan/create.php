@@ -24,19 +24,15 @@ $data = json_decode(file_get_contents("php://input"));
 if(
     !empty($data->VID) &&
     !empty($data->PID) &&
-    !empty($data->StartDate) &&
-    !empty($data->EndDate) &&
-      !empty($data->Places)
+    !empty($data->Date)
 ){
 
     // set plan property values
 
-
     $plan->VID = $data->VID;
     $plan->PID = $data->PID;
-    $plan->StartDate = $data->StartDate;
-    $plan->EndDate = $data->EndDate;
-    $plan->Places =$data->Places;
+    $plan->Date = $data->Date;
+
 
     // create the plan
     if($plan->create()){
@@ -71,8 +67,6 @@ else{
 // {
 // "VID":"4",
 // "PID":"9",
-// "StartDate":"2019-09-4",
-// "EndDate":"2019-09-4",
-// "Places":"place"
+// "Date":"2019-09-4"
 // }
 ?>
