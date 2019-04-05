@@ -8,10 +8,10 @@
 		  echo "Welcome ".$_SESSION['login_user'];
 	  ?>
   <head>
-    
+
     <?php
-	  
-	  
+
+
 	  $servername = "localhost";
 $username = "root";
 $password = "";
@@ -29,7 +29,7 @@ $link = mysqli_connect($servername, $username, $password);
   {
     echo "we could not find this database";
   }
-    
+
     ?>
 
     <meta charset="utf-8">
@@ -138,31 +138,31 @@ $link = mysqli_connect($servername, $username, $password);
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
-            
+
           </div>
         </li>
-        
+
          <li class="nav-item active">
           <a class="nav-link" href="Manageplaces.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Manage places</span></a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
         </li>
-       
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-          
 
-        
+
+
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">
@@ -181,31 +181,34 @@ $link = mysqli_connect($servername, $username, $password);
              Places' Table</div>
             <div class="card-body">
               <div class="table-responsive">
-               
-              
-                
+
+
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                 
+
                   <thead>
                     <tr>
                       <th>Title</th>
                       <th>Category</th>
                       <th>Description</th>
-                      <th>Location</th>
-              
-                      
-                   
+											<th>Lat</th>
+											<th>Lang</th>
+											<th>Start</th>
+											<th>End</th>
+
+
+
                   </thead>
 
-           
+
 
                   <tbody>
 			<?php
-			
-			$sql = "select * from pois";
+
+			$sql = "select * from place";
 			//$result = $conn->query($sql);
 			$result = mysqli_query($link, $sql);
- 
+
 			if(mysqli_num_rows($result) > 0){
     			  // output data of each row
     			  while($row = mysqli_fetch_array($result)) {
@@ -213,20 +216,23 @@ $link = mysqli_connect($servername, $username, $password);
                       		echo "<td>".$row['Title']."</td>";
                       		echo "<td>".$row['Category']."</td>";
                       		echo "<td>".$row['Description']."</td>";
-					  		echo "<td>".$row['Location']."</td>";
+													echo "<td>".$row['lat']."</td>";
+					                	echo "<td>".$row['lang']."</td>";
+					                  	echo "<td>".$row['Start']."</td>";
+					                    	echo "<td>".$row['End']."</td>";
                      		echo "</tr>";
     			}
 			} else {
     				echo "0 results";
 			}
-				
+
 
 			?>
-                  
-               
+
+
                   </body>
                 </table>
-            
+
              <script>
         function deleteRow(r) {
         var i = r.parentNode.parentNode.rowIndex;
@@ -236,10 +242,10 @@ $link = mysqli_connect($servername, $username, $password);
 
               </div>
             </div>
-            
+
           </div>
 
-      
+
 
         </div>
         <!-- /.container-fluid -->

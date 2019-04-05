@@ -1,72 +1,74 @@
 
-<?php  
+<?php
   session_start();
 	  if ( !isset($_SESSION['login_user']) )
 		  header("Location: login.php");
 	  else
 		  echo "Welcome ".$_SESSION['login_user'];
-	  
 
-//if(isset($_POST['send']))  
-{  
+
+//if(isset($_POST['send']))
+{
 
 $host="localhost";
-//host name 
+//host name
 $username="root";
-//database username  
+//database username
 $word="";
-//database word  
+//database word
 $db_name="tayba guide";
-//database name  
-$tbl_name="pois";
-//table name  
+//database name
+$tbl_name="place";
+//table name
 $con=mysqli_connect("$host", "$username", "$word","$db_name")or die("cannot connect");
 
-//connection string  
+//connection string
 
-	
-	
+
+
 	$pid = $_POST['pid'];
 	$category = $_POST['category'];
 	$title = $_POST['title'];
 	$desc = $_POST['description'];
-	$location = $_POST['location'];
+	$lat = $_POST['lat'];
+  $lang = $_POST['lang'];
+  $start = $_POST['start'];
+  $end = $_POST['end'];
 
-	$sql= "update pois set Category='".$category."',Title='".$title."',Description='".$desc."',Location='".$location."' where PID =$pid";
+	$sql= "update place set Category='".$category."',Title='".$title."',Description='".$desc."',
+  lat='".$lat."',lang='".$lang. "',Start='".$start."',
+  End='".$end."' where PID =$pid";
 	echo $sql;
-	
+
 $in_ch=mysqli_query($con,$sql);
 
 
-if($in_ch==1)  
-   
+if($in_ch==1)
 
-{  
-     
 
- echo'<script>alert("POI Updated Successfully")</script>';  
+{
+
+
+ echo'<script>alert("POI Updated Successfully")</script>';
 	header("Location:Manageplaces.php");
-  
-
- } 
-
- 
-else  
-  
-
- {  
-     
-
- echo'<script>alert("Failed To Insert")</script>';  
-  
-
- }  
 
 
-}  
+ }
 
 
-?> 
- 
+else
 
 
+ {
+
+
+ echo'<script>alert("Failed To Insert")</script>';
+
+
+ }
+
+
+}
+
+
+?>

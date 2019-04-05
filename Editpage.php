@@ -2,8 +2,8 @@
 <html lang="en">
 
   <head>
-    
-    
+
+
     <?php
 $servername = "localhost";
 $username = "root";
@@ -130,49 +130,52 @@ $link = mysqli_connect($servername, $username, $password);
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
-            
+
           </div>
         </li>
-        
+
          <li class="nav-item active">
           <a class="nav-link" href="Manageplaces.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Manage places</span></a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
         </li>
-       
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-         
+
 
           <!-- Page Content -->
-          
+
           <?php
-			
+
 			$pid = $_GET['pid'];
-			$sql = "select * from pois where PID = ".$pid;
+			$sql = "select * from place where PID = ".$pid;
 			$result = mysqli_query($link, $sql);
-  			
+
   			if(mysqli_num_rows($result) > 0) {
 				$row = mysqli_fetch_array($result);
 				$category = $row['Category'];
 				$title = $row['Title'];
 				$desc = $row['Description'];
-				$location = $row['Location'];
+				$lat = $row['lat'];
+        $lang = $row['lang'];
+        $start = $row['Start'];
+        $end = $row['End'];
 			}
-			
-			
+
+
 			?>
-          
+
           <h1>Edit POI</h1>
           <hr>
           <form action="editplaces1.php" method="post">
@@ -186,12 +189,22 @@ $link = mysqli_connect($servername, $username, $password);
   Description:<br>
   <input type="text" name="description" value = <?php echo $desc;  ?> >
   <br>
-  Location:<br>
-  <input type="text" name="location" value = <?php echo $location;  ?> >
-  <br><br>
+  lat:<br>
+  <input type="text" name="lat" value = <?php echo $lat;  ?> >
+  <br>
+  lang:<br>
+  <input type="text" name="lang" value = <?php echo $lang;  ?> >
+  <br>
+  Start:<br>
+  <input type="date" name="start" value = <?php echo $start;  ?> >
+  <br>
+  End:<br>
+  <input type="date" name="end" value = <?php echo $end;  ?> >
+  <br>
+  <br>
   <input type="submit" value="Save">
   <input type="button" value="Cancel" onclick="window.location.href='Manageplaces.php'">
-          
+
           </form>
 
         </div>

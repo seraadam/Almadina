@@ -50,7 +50,7 @@ try{
     }
 	
 	// First chart 
-	$handle = $link->prepare('select impression.PID as PID, pois.Title as Title, count(impression.PID) as imp from impression, pois where impression.PID=pois.PID group by impression.PID'); 
+	$handle = $link->prepare('select impression.PID as PID, place.Title as Title, count(impression.PID) as imp from impression, place where impression.PID=place.PID group by impression.PID'); 
 	
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
@@ -61,7 +61,7 @@ try{
     }
 	
 	// Third chart
-	$handle = $link->prepare('select feedback.PID as PID, pois.Title as Title, avg(feedback.Rate) as Rate from feedback, pois where feedback.PID=pois.PID group by feedback.PID');
+	$handle = $link->prepare('select feedback.PID as PID, place.Title as Title, avg(feedback.Rate) as Rate from feedback, place where feedback.PID=place.PID group by feedback.PID');
 	
     $handle->execute(); 
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);

@@ -2,15 +2,15 @@
 <html lang="en">
 
   <head>
-    
-    
+
+
     <?php
 	    session_start();
 	  if ( !isset($_SESSION['login_user']) )
 		  header("Location: login.php");
 	  else
 		  echo "Welcome ".$_SESSION['login_user'];
-	  
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -136,65 +136,75 @@ $link = mysqli_connect($servername, $username, $password);
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
-            
+
           </div>
         </li>
-        
+
          <li class="nav-item active">
           <a class="nav-link" href="Manageplaces.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Manage places</span></a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
         </li>
-       
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-        
 
-        
+
+
 
           <!-- Page Content -->
           <h1>Add POI</h1>
           <hr>
           <form action="addplaces1.php" method="post">
- 
+
   Title:<br>
   <input type="text" name="title">
   <br>
   Category:<br>
   <select name="category">
-    <option value="Islamic Landmark">Islamic Landmark</option>
-    <option value="Historical Place">Historical Place</option>
+    <option value="Islamic">Islamic Landmark</option>
+    <option value="Historical">Historical Place</option>
     <option value="Museum">Museum</option>
-    <option value="Restaurant or Shopping Mall">Restaurant or shopping mall</option>
+    <option value="Restaurant">Restaurant </option>
+    <option value="Shopping">shopping Mall </option>
     <option value="Event">Event</option>
   </select>
   <br>
   Description:<br>
   <input type="text" name="description" height="100" width="300">
   <br>
-  Location:<br>
+  Lat:<br>
+  <input type="text" name="lat">
+  <br>
+  lang:<br>
   <input type="text" name="location">
+  <br>
+  Start:<br>
+  <input type="date" name="start">
+  <br>
+  End:<br>
+  <input type="date" name="end">
   <br>
   Upload Image:<br>
   <input type="file" name="fileToUpload" id="fileToUpload">
   <input type="submit" value="Upload Image" name="submit">
-  
-  
+
+
   <br><br>
   <input type="submit" value="Save">
   <input type="button" onclick="location.href='Manageplaces.php'" value=" Cancel " />
-  
-          
+
+
           </form>
 
         </div>

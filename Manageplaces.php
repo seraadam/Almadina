@@ -8,7 +8,7 @@
 		  header("Location: login.php");
 	  else
 		  echo "Welcome ".$_SESSION['login_user'];
-	  
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -48,25 +48,25 @@ $link = mysqli_connect($servername, $username, $password);
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
-    
-        <script> 
+
+        <script>
 				function deleteplace(pid)
 			{
 				var x = confirm ("Are you sure you want to delete?");
-				
-				if (x) 
+
+				if (x)
 				{
 				//var y = confirm ("Are you sure?");
 				window.location.replace("deletepage.php?pid="+pid);
-				
+
 				}
-				
-				else 
-					
-					return false; 
+
+				else
+
+					return false;
 			}
-					  
-					  </script>   
+
+					  </script>
 
   </head>
 
@@ -154,29 +154,29 @@ $link = mysqli_connect($servername, $username, $password);
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
-            
+
           </div>
         </li>
-        
+
          <li class="nav-item active">
           <a class="nav-link" href="Manageplaces.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Manage places</span></a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
         </li>
-       
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-          
+
 
           <!-- DataTables Example -->
           <div class="card mb-3">
@@ -185,36 +185,39 @@ $link = mysqli_connect($servername, $username, $password);
              Places' Table</div>
             <div class="card-body">
               <div class="table-responsive">
-               
+
                 <input type="button" onclick="location.href='addplaces.php'" value=" Add New Place " />
                 <br><br>
-                
+
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                 
+
                   <thead>
                     <tr>
                       <th>Title</th>
                       <th>Category</th>
                       <th>Description</th>
-                      <th>Location</th>
-              
-                      
-                   
+                      <th>Lat</th>
+                      <th>Lang</th>
+                      <th>Start</th>
+                      <th>End</th>
+
+
+
                   </thead>
 
-           
+
 
                   <tbody>
-           
-                  
+
+
 			<?php
-			
-			$sql = "select * from pois";
+
+			$sql = "select * from place";
 			//$result = $conn->query($sql);
 			$result = mysqli_query($link, $sql);
-		
-			
- 
+
+
+
 			if(mysqli_num_rows($result) > 0){
     			  // output data of each row
     			  while($row = mysqli_fetch_array($result)) {
@@ -222,8 +225,11 @@ $link = mysqli_connect($servername, $username, $password);
                       		echo "<td>".$row['Title']."</td>";
                       		echo "<td>".$row['Category']."</td>";
                       		echo "<td>".$row['Description']."</td>";
-					  		echo "<td>".$row['Location']."</td>";
-                     
+					  		echo "<td>".$row['lat']."</td>";
+                	echo "<td>".$row['lang']."</td>";
+                  	echo "<td>".$row['Start']."</td>";
+                    	echo "<td>".$row['End']."</td>";
+
                       		echo "<td> <input type='button' onclick=\"location.href='Editpage.php?pid=".$row['PID']."'\"  value=\" Edit \" /> </td>";
 					  		echo "<td> <input onclick=\" deleteplace('".$row['PID']."');\" type=\"button\" name=\"delete\" value=\" Delete \" /> </td>";
                      		echo "</tr>";
@@ -231,14 +237,14 @@ $link = mysqli_connect($servername, $username, $password);
 			} else {
     				echo "0 results";
 			}
-				
+
 
 			?>
-                  
-               
+
+
                   </body>
                 </table>
-            
+
              <script>
         function deleteRow(r) {
         var i = r.parentNode.parentNode.rowIndex;
@@ -251,7 +257,7 @@ $link = mysqli_connect($servername, $username, $password);
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
 
-      
+
 
         </div>
         <!-- /.container-fluid -->
