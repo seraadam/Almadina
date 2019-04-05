@@ -1,0 +1,28 @@
+
+1- Place
+  #create:
+    http://localhost/tiba/api/place/create.php
+  #read
+    http://localhost/tiba/api/place/read.php
+  #read_dates:
+    http://localhost/tiba/api/place/read_dates.php?pdate=2019-09-09
+  #read_one:
+    http://localhost/tiba/api/place/read_one.php?PID=9
+  #read_category:
+    http://localhost/tiba/api/place/read_category.php?category=historical
+
+2- plan
+  #create:
+    http://localhost/tiba/api/plan/create.php
+  #read:
+    http://localhost/tiba/api/plan/read.php
+  #read_one:
+    http://localhost/tiba/api/plan/read_one.php?TID=9
+
+3- Visitor
+  #create:
+    http://localhost/tiba/api/visitor/create.php
+  #read:
+    http://localhost/tiba/api/visitor/read.php
+  #read_one:
+    http://localhost/tiba/api/visitor/read_one.php?VID=9

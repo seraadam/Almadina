@@ -135,7 +135,6 @@ function readdate($pdate){
 
   // query to read single record
 
-
   // select all query
   $query = "SELECT * FROM ". $this->table_name ." WHERE `Start` <= ' " .$pdate. "' AND `End` > ' " . $pdate. "'";
 
