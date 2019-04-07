@@ -16,9 +16,11 @@ $db = $database->getConnection();
 $place = new Place($db);
 
 // read places will be here
+$category= isset($_GET['category']) ? $_GET['category'] : die();
+
 
 // query places
-$stmt = $place->read();
+$stmt = $place->readCategory($category);
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
