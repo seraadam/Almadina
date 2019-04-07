@@ -4,43 +4,43 @@
 
 session_start();
 $loginError = false;
-	
+
 if( isset( $_POST['inputEmail'] ))
 {
 
-  $link = mysqli_connect("localhost", "root", "");
+  $link = mysqli_connect("localhost", "nomowtec_tayba", "");
 
   if (! $link)
   {
     die("could not connect:".mysqli_error());
   }
 
-  $db_selected = mysqli_select_db($link, "tayba guide");
+  $db_selected = mysqli_select_db($link, "nomowtec_tayba");
   if(! $db_selected)
   {
     echo "we could not find this database";
   }
-  
-  $ID = $_POST["inputEmail"];  
-  $password = $_POST["inputPassword"]; 
-  
- 
+
+  $ID = $_POST["inputEmail"];
+  $password = $_POST["inputPassword"];
+
+
   $sql = "SELECT * FROM admins WHERE adminID = '$ID' AND password = '$password' ";
   //echo $sql;
   $result = mysqli_query($link,$sql);
-	if(mysqli_num_rows($result) > 0)  
-        {  
-          $row = mysqli_fetch_array($result);  
-          //if(password_verify($password, $row["Ppassword"]))  
+	if(mysqli_num_rows($result) > 0)
+        {
+          $row = mysqli_fetch_array($result);
+          //if(password_verify($password, $row["Ppassword"]))
           if( $password == $row["password"] )
-            {  
+            {
               $_SESSION['login_user'] = $ID;
               $_SESSION['Username'] = $_POST['adminID'];
               //date_default_timezone_set("Asia/Riyadh");
               //$sql = "UPDATE pr SET ts ='".date("Y-m-d H:i:s")."' where adminID= '".$ID."'";
               //$result = mysqli_query($link, $sql);
               header("Location: index.php");
-              
+
             }
           else
             {
@@ -60,13 +60,13 @@ if( isset( $_POST['inputEmail'] ))
 
          echo ("<p style=\"color:#e63c19; font-size:17px; font-family:\"Roboto\", sans-serif; padding-top:220px;\">"); echo "Login error"; echo ("</p>");
 
-          mysqli_close($link); 
+          mysqli_close($link);
       }
 
 ?>
   <head>
- 
-	
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -94,7 +94,7 @@ if( isset( $_POST['inputEmail'] ))
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-       
+
       <img src="TGL.png" width="392" height="271">
         <div class="card-header" text-align="center">Taiba Guide Administration Page</div>
         <div class="card-body">
@@ -130,7 +130,7 @@ if( isset( $_POST['inputEmail'] ))
         </div>
       </div>
     </div>
-    
+
 
 
     <!-- Bootstrap core JavaScript-->

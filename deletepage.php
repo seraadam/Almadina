@@ -7,11 +7,11 @@
 
 $host="localhost";
 //host name
-$username="root";
+$username="nomowtec_tayba";
 //database username
 $word="";
 //database word
-$db_name="tayba guide";
+$db_name="nomowtec_tayba";
 //database name
 $tbl_name="place";
 //table name

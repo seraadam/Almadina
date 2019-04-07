@@ -3,9 +3,9 @@ class Database{
 
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "tayba guide";
-    private $username = "root";
-    private $password = "";
+    private $db_name = "nomowtec_tayba";
+    private $username = "nomowtec_tayba";
+    private $password = "12345678910";
     public $conn;
 
     // get the database connection

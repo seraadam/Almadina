@@ -13,8 +13,8 @@
 
 
 	  $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "nomowtec_tayba";
+$password = "12345678910";
 
 // Create connection
 //$conn = new mysqli($servername, $username, $password);
@@ -24,7 +24,7 @@ $link = mysqli_connect($servername, $username, $password);
     die("could not connect:".mysqli_error());
   }
 
-  $db_selected = mysqli_select_db($link, "tayba guide");
+  $db_selected = mysqli_select_db($link, "nomowtec_tayba");
   if(! $db_selected)
   {
     echo "we could not find this database";

@@ -4,11 +4,11 @@
 		  header("Location: login.php");
 	  else
 		  echo "Welcome ".$_SESSION['login_user'];
-	  
- 
+
+
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "nomowtec_tayba";
+$password = "12345678910";
 
 // Create connection
 //$conn = new mysqli($servername, $username, $password);
@@ -18,7 +18,7 @@ $link = mysqli_connect($servername, $username, $password);
     die("could not connect:".mysqli_error());
   }
 
-  $db_selected = mysqli_select_db($link, "tayba guide");
+  $db_selected = mysqli_select_db($link, "nomowtec_tayba");
   if(! $db_selected)
   {
     echo "we could not find this database";
@@ -31,53 +31,53 @@ $dataPoints3 = array();
 //Best practice is to create a separate file for handling connection to database
 try{
      // Creating a new connection.
-    $link = new \PDO(   'mysql:host=localhost;dbname=tayba guide;charset=utf8mb4', 
-                        'root', 
-                        '', 
+    $link = new \PDO(   'mysql:host=localhost;dbname=nomowtec_tayba;charset=utf8mb4',
+                        'nomowtec_tayba',
+                        '',
                         array(
                             \PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                             \PDO::ATTR_PERSISTENT => false
                         )
                     );
-	
+
     // Second chart
-	$handle = $link->prepare('select PID, count(PID) as imp from impression group by PID'); 
-    $handle->execute(); 
+	$handle = $link->prepare('select PID, count(PID) as imp from impression group by PID');
+    $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-		
+
     foreach($result as $row){
         array_push($dataPoints, array("x"=> $row->PID, "y"=> $row->imp));
     }
-	
-	// First chart 
-	$handle = $link->prepare('select impression.PID as PID, place.Title as Title, count(impression.PID) as imp from impression, place where impression.PID=place.PID group by impression.PID'); 
-	
-    $handle->execute(); 
+
+	// First chart
+	$handle = $link->prepare('select impression.PID as PID, place.Title as Title, count(impression.PID) as imp from impression, place where impression.PID=place.PID group by impression.PID');
+
+    $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-		
+
     foreach($result as $row){
 		//echo $row->Title + $row->imp;
         array_push($dataPoints2, array("y"=> $row->imp, "label"=> $row->Title));
     }
-	
+
 	// Third chart
 	$handle = $link->prepare('select feedback.PID as PID, place.Title as Title, avg(feedback.Rate) as Rate from feedback, place where feedback.PID=place.PID group by feedback.PID');
-	
-    $handle->execute(); 
+
+    $handle->execute();
     $result = $handle->fetchAll(\PDO::FETCH_OBJ);
-		
+
     foreach($result as $row){
 		//echo $row->Title + $row->imp;
         array_push($dataPoints3, array("y"=> $row->Rate, "label"=> $row->Title));
     }
-	
-	
+
+
 	$link = null;
 }
 catch(\PDOException $ex){
     print($ex->getMessage());
 }
-	
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,10 +103,10 @@ catch(\PDOException $ex){
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
-    
+
     <script>
 window.onload = function () {
- 
+
 // Second chart
 	var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
@@ -116,14 +116,14 @@ window.onload = function () {
 		//text: "Most Visited Places"
 	//},
 	data: [{
-		type: "bar", //change type to bar, line, area, pie, etc  
+		type: "bar", //change type to bar, line, area, pie, etc
 		//yValueFormatString: "#,##0.## tonnes",
 		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart.render();
- 
-// First chart		   
+
+// First chart
 var chart2 = new CanvasJS.Chart("chartContainer2", {
 	animationEnabled: true,
 	//exportEnabled: true,
@@ -132,15 +132,15 @@ var chart2 = new CanvasJS.Chart("chartContainer2", {
 		text: "Most Visited Places"
 	},
 	data: [{
-		type: "column", //change type to bar, line, area, pie, etc  
+		type: "column", //change type to bar, line, area, pie, etc
 		   yValueFormatString: "#,##0.## visits",
 		dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart2.render();
-	
+
 //	Third Chart
-	
+
 	var chart3 = new CanvasJS.Chart("chartContainer3", {
 	animationEnabled: true,
 	//exportEnabled: true,
@@ -149,15 +149,15 @@ chart2.render();
 		//text: "Most Visited Places"
 	//},
 	data: [{
-		type: "pie", //change type to bar, line, area, pie, etc  
+		type: "pie", //change type to bar, line, area, pie, etc
 		   yValueFormatString: "#,##0.## stars",
 		dataPoints: <?php echo json_encode($dataPoints3, JSON_NUMERIC_CHECK); ?>
 	}]
 });
 chart3.render();
 }
-		   
-		   
+
+
 </script>
 
   </head>
@@ -246,29 +246,29 @@ chart3.render();
             <a class="dropdown-item" href="register.html">Register</a>
             <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
             <div class="dropdown-divider"></div>
-            
+
           </div>
         </li>
-        
+
          <li class="nav-item active">
           <a class="nav-link" href="Manageplaces.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Manage places</span></a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Reports</span></a>
         </li>
-       
+
       </ul>
 
       <div id="content-wrapper">
 
         <div class="container-fluid">
 
-         
+
 
           <!-- Area Chart Example-->
           <div class="card mb-3">
@@ -293,8 +293,8 @@ chart3.render();
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
               </div>
             </div>
-            
-            
+
+
             <div class="col-lg-4">
               <div class="card mb-3">
                 <div class="card-header">
