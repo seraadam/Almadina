@@ -85,11 +85,11 @@ function create(){
 
 }
 // used when filling up the update product form
-function readCategory(){
+function readCategory($category){
 
     // select all query
-    $query = "SELECT * FROM " . $this->table_name ." WHERE Category = ? ";
-
+    $query = "SELECT * FROM " . $this->table_name ." WHERE Category = '".$category."'";
+  
     // prepare query statement
     $stmt = $this->conn->prepare($query);
 
