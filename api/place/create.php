@@ -84,9 +84,9 @@ else{
 // "lang":"39.6009011",
 // "image_name":"https://www.sauditourism.sa/ar/ExploreKSA/AttractionSites/AlHijazRailroad/PublishingImages/HijazRailroadLine.jpg",
 // "Description":"The Medina museum in Hejaz railway Station receives a lot of visitors and researchers. It is one of the prominent tourist destinations and a cultural front for Medina region, which is characterized by the abundance of archeological and Islamic sites. The museum includes the railway station buildings; a museum in the railway repair shop that displays the history of Hejaz Railway station; a market for craftsmen; a shop; a traditional café; and a restauran",
-//"End":"2019-09-4",
+// "End":"2019-09-4",
 // "Start":"2019-09-4"
-//}
+// }
 // {
 // "Category":"Historical",
 // "Title":"Tabuk station",

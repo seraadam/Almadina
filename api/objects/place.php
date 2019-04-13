@@ -89,7 +89,7 @@ function readCategory($category){
 
     // select all query
     $query = "SELECT * FROM " . $this->table_name ." WHERE Category = '".$category."'";
-  
+
     // prepare query statement
     $stmt = $this->conn->prepare($query);
 
@@ -104,7 +104,7 @@ function readOne(){
 
     // query to read single record
     $query = "SELECT * FROM " . $this->table_name ." WHERE PID = ? ";
-
+echo json_encode($query);
     // prepare query statement
     $stmt = $this->conn->prepare( $query );
 

@@ -19,7 +19,8 @@ $visitor = new Visitor($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 // make sure data is not empty
 if(
     !empty($data->Username) &&
