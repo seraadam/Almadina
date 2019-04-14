@@ -19,7 +19,7 @@ $plan = new Plan($db);
 
 // set ID property of record to read
 $plan->TID = isset($_GET['id']) ? $_GET['id'] : die();
-
+echo json_encode($plan->TID);
 // read the details of plan to be edited
 $plan->readOne();
 
